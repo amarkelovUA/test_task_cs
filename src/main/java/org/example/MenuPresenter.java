@@ -3,8 +3,8 @@ package org.example;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.stream.IntStream;
 import org.example.model.Goods;
 import org.example.service.MenuService;
@@ -19,9 +19,9 @@ public class MenuPresenter {
         this.menuService = menuService;
     }
 
-    public void run() {
+    public Optional<Goods> getSelectedGoods() {
         uploadMenus();
-        workWithMenu();
+        return workWithMenu();
     }
 
     private void uploadMenus() {
@@ -30,34 +30,44 @@ public class MenuPresenter {
         menus.put(2, menuService.getAllDeserts());
         menus.put(3, menuService.getAllDrinks());
 
-        selectionText = new TreeMap<>();
+        selectionText = new HashMap<>();
         selectionText.put(1, new String[]{"1. Main dishes", "dishes"});
         selectionText.put(2, new String[]{"2. Desserts", "dishes"});
         selectionText.put(3, new String[]{"3. Drinks", "drinks"});
     }
 
-    private void workWithMenu() {
+    private Optional<Goods> workWithMenu() {
         System.out.println("Menu");
         displayMenuTypesWithNumberDishes();
         System.out.println(CODE_EXIT + ". To the previous page.");
         System.out.println("Select the option for detail view: ");
         while (true) {
-            int option = getUserChoice();
+            int option = getUserChoice(menus.size());
             if (menus.containsKey(option)) {
-                System.out.println(menus.get(option));
+                return selectGoods(menus.get(option));
             } else if (option == CODE_EXIT) {
-                return;
+                return Optional.empty();
             } else {
                 System.out.println("You should input the number from 1 to " + menus.size());
             }
         }
     }
 
-    private int getUserChoice() {
+    private Optional<Goods> selectGoods(List<? extends Goods> goodsList) {
+        for (int i = 1; i < goodsList.size() + 1; i++) {
+            System.out.println(i + " -> " + goodsList.get(i - 1));
+        }
+        System.out.println("What do you choose: ");
+        int index = getUserChoice(goodsList.size()) - 1;
+        return (index < 0 || index >= goodsList.size()) ? Optional.empty()
+                : Optional.of(goodsList.get(index));
+    }
+
+    private int getUserChoice(int size) {
         try {
             return new Scanner(System.in).nextInt();
         } catch (Exception e) {
-            System.out.println("You should input the number from 1 to " + menus.size());
+            System.out.println("You should input the number from 1 to " + size + " or 0.");
             return 0;
         }
     }
