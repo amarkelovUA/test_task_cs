@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.List;
-import java.util.Optional;
 import org.example.dao.DessertDao;
 import org.example.dao.DrinkDao;
 import org.example.dao.MainDishDao;
@@ -10,7 +9,6 @@ import org.example.dao.impl.DrinkDaoImpl;
 import org.example.dao.impl.MainDishDaoImpl;
 import org.example.model.Dessert;
 import org.example.model.Drink;
-import org.example.model.Goods;
 import org.example.model.MainDish;
 import org.example.service.MenuService;
 import org.example.strategy.ParserStrategy;
@@ -27,11 +25,14 @@ public class Main {
     private static final FileReaderCsv fileReaderCsv = new CsvFileReader();
 
     public static void main(String[] args) {
+        OrderingSystem orderingSystem = getOrderingSystem();
+        orderingSystem.run();
+    }
+
+    private static OrderingSystem getOrderingSystem() {
         MenuService menuService = initMenuService();
-        System.out.println("What would you like:");
         MenuPresenter menuPresenter = new MenuPresenter(menuService);
-        Optional<Goods> selectedGoods = menuPresenter.getSelectedGoods();
-        selectedGoods.ifPresent(System.out::println);
+        return new OrderingSystem(menuPresenter);
     }
 
     private static MenuService initMenuService() {

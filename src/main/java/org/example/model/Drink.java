@@ -19,7 +19,6 @@ public class Drink extends Goods {
         return "Drink{"
                 + "name: " + getName()
                 + " price: " + getPrice()
-                + " supplement: " + supplement
                 + '}';
     }
 }

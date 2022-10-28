@@ -2,23 +2,38 @@ package org.example.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Order {
-    private Long id;
-    private List<Launch> launches;
-    private List<Drink> drinks;
+    private Lunch lunch;
+    private Drink drink;
     private BigDecimal totalPrice;
     private LocalDateTime dateTime;
     private boolean isPaid;
 
     public void makeOrder() {
-
+        totalPrice = drink.getPrice()
+                .add(lunch.getMainDish().getPrice())
+                .add(lunch.getDessert().getPrice());
     }
 
     public void finishOrder() {
+        dateTime = LocalDateTime.now();
+        isPaid = true;
+    }
 
+    @Override
+    public String toString() {
+        return "Order: " + System.lineSeparator()
+                + "  for lunch: " + System.lineSeparator()
+                + "    - " + lunch.getMainDish() + System.lineSeparator()
+                + "    - " + lunch.getDessert() + System.lineSeparator()
+                + "  and drink: " + System.lineSeparator()
+                + "    - " + drink + System.lineSeparator()
+                + "    - supplement to drink: " + drink.getSupplement().getDescription()
+                + "Total price: " + totalPrice + "UAH";
     }
 }
