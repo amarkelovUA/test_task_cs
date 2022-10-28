@@ -11,4 +11,13 @@ public class Dessert extends Goods {
         super(name, price);
         this.cuisine = cuisine;
     }
+
+    @Override
+    public String toString() {
+        return "Dessert{"
+                + "name: " + getName()
+                + " price: " + getPrice()
+                + " cuisine: " + cuisine
+                + '}';
+    }
 }

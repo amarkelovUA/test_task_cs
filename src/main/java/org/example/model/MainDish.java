@@ -11,4 +11,13 @@ public class MainDish extends Goods {
         super(name, price);
         this.cuisine = cuisine;
     }
+
+    @Override
+    public String toString() {
+        return "MainDish{"
+                + "name: " + getName()
+                + " price: " + getPrice()
+                + " cuisine: " + cuisine
+                + '}';
+    }
 }

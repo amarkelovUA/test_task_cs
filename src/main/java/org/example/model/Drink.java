@@ -9,8 +9,17 @@ public class Drink extends Goods {
     @Setter
     private Supplement supplement;
 
-    protected Drink(String name, BigDecimal price, Supplement supplement) {
+    public Drink(String name, BigDecimal price, Supplement supplement) {
         super(name, price);
         this.supplement = supplement;
+    }
+
+    @Override
+    public String toString() {
+        return "Drink{"
+                + "name: " + getName()
+                + " price: " + getPrice()
+                + " supplement: " + supplement
+                + '}';
     }
 }

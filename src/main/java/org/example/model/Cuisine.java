@@ -4,9 +4,13 @@ public enum Cuisine {
     POLISH("Polish"),
     MEXICAN("Mexican"),
     ITALIAN("Italian");
-    private String value;
+    private final String description;
 
-    Cuisine(String value) {
-        this.value = value;
+    Cuisine(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

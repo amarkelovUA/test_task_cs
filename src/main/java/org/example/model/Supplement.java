@@ -3,9 +3,13 @@ package org.example.model;
 public enum Supplement {
     ICE_CUBES("ice cubes"),
     LEMON("lemon");
-    private String values;
+    private final String description;
 
-    Supplement(String values) {
-        this.values = values;
+    Supplement(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

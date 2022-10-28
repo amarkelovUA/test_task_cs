@@ -15,8 +15,8 @@ public class AbstractDao<T> implements GenericDao<T> {
     }
 
     @Override
-    public T add(T goods) {
-        database.add(goods);
-        return goods;
+    public T add(T entity) {
+        database.add(entity);
+        return entity;
     }
 }
