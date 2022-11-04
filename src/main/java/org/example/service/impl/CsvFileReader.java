@@ -1,4 +1,4 @@
-package org.example.util.impl;
+package org.example.service.impl;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -6,7 +6,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-import org.example.util.FileReaderCsv;
+import org.example.service.FileReaderCsv;
 
 public class CsvFileReader implements FileReaderCsv {
     private static final int NUMBER_OF_MISSING_LINES = 1;

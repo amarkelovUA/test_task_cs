@@ -1,18 +1,18 @@
 package org.example;
 
 import java.util.Optional;
+import lombok.AllArgsConstructor;
 import org.example.model.Goods;
 import org.example.model.Order;
+import org.example.service.OrderService;
 import org.example.strategy.AddingGoodsStrategy;
-import org.example.strategy.AddingGoodsStrategyImpl;
 
+@AllArgsConstructor
 public class OrderingSystem {
+    private final AddingGoodsStrategy addingGoodsStrategy;
     private final MenuPresenter menuPresenter;
-    private final AddingGoodsStrategy addingGoodsStrategy = new AddingGoodsStrategyImpl();
+    private final OrderService orderService;
 
-    public OrderingSystem(MenuPresenter menuPresenter) {
-        this.menuPresenter = menuPresenter;
-    }
 
     public void run() {
         boolean isOrderInProgress = true;
@@ -23,8 +23,8 @@ public class OrderingSystem {
             isOrderInProgress = checkOrderAndMakeAdviceToIt(order);
         }
         System.out.println("Your order is: ");
-        order.makeOrder();
-        order.finishOrder();
+        orderService.makeOrder(order);
+        orderService.finishOrder(order);
         System.out.println(order);
     }
 

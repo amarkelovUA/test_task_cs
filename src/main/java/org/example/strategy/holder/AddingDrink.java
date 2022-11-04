@@ -12,7 +12,7 @@ public class AddingDrink implements AddingGoods {
     @Override
     public void addGoods(Order order, Goods goods) {
         Drink drink = (Drink) goods;
-        if (drink.getSupplement() == null) {
+        if (drink.getSupplement().isEmpty()) {
             offerSupplement(drink);
         }
         order.setDrink(drink);
@@ -28,7 +28,7 @@ public class AddingDrink implements AddingGoods {
         int index = getUserChoice((int) size) - 1;
         Optional<Supplement> optionalSupplement = Arrays.stream(Supplement.values())
                 .filter(s -> s.ordinal() == index).findFirst();
-        optionalSupplement.ifPresent(drink::setSupplement);
+        drink.setSupplement(optionalSupplement);
     }
 
     private int getUserChoice(int size) {
