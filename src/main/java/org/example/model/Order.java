@@ -14,26 +14,17 @@ public class Order {
     private LocalDateTime dateTime;
     private boolean isPaid;
 
-    public void makeOrder() {
-        totalPrice = drink.getPrice()
-                .add(lunch.getMainDish().getPrice())
-                .add(lunch.getDessert().getPrice());
-    }
-
-    public void finishOrder() {
-        dateTime = LocalDateTime.now();
-        isPaid = true;
-    }
-
     @Override
     public String toString() {
+        String supplementDescription = (drink.getSupplement().isEmpty()) ? "none"
+                : drink.getSupplement().get().getDescription();
         return "Order: " + System.lineSeparator()
                 + "  for lunch: " + System.lineSeparator()
                 + "    - " + lunch.getMainDish() + System.lineSeparator()
                 + "    - " + lunch.getDessert() + System.lineSeparator()
                 + "  and drink: " + System.lineSeparator()
                 + "    - " + drink + System.lineSeparator()
-                + "    - supplement to drink: " + drink.getSupplement().getDescription()
+                + "    - supplement to drink: " + supplementDescription + System.lineSeparator()
                 + "Total price: " + totalPrice + "UAH";
     }
 }

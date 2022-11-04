@@ -1,9 +1,9 @@
-package org.example.util.impl;
+package org.example.service.impl;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.example.util.FileWriterCsv;
+import org.example.service.FileWriterCsv;
 
 public class CsvFileWriter implements FileWriterCsv {
     @Override
