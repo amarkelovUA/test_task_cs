@@ -2,7 +2,6 @@ package org.example.model;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-
 import lombok.Getter;
 import lombok.Setter;
 

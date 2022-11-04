@@ -12,8 +12,10 @@ import org.example.model.Dessert;
 import org.example.model.Drink;
 import org.example.model.Goods;
 import org.example.model.MainDish;
+import org.example.service.FileReaderCsv;
 import org.example.service.MenuService;
 import org.example.service.OrderService;
+import org.example.service.impl.CsvFileReader;
 import org.example.service.impl.MenuServiceImpl;
 import org.example.service.impl.OrderServiceImpl;
 import org.example.strategy.AddingGoodsStrategy;
@@ -28,8 +30,6 @@ import org.example.strategy.parser.DessertParserImpl;
 import org.example.strategy.parser.DrinkParserImpl;
 import org.example.strategy.parser.MainDishParserImpl;
 import org.example.strategy.parser.ParserGoods;
-import org.example.service.FileReaderCsv;
-import org.example.service.impl.CsvFileReader;
 
 public class Main {
     private static final String DRINKS_FILE_NAME = "src/main/resources/drinks.csv";

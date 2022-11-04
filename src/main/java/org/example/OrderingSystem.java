@@ -13,7 +13,6 @@ public class OrderingSystem {
     private final MenuPresenter menuPresenter;
     private final OrderService orderService;
 
-
     public void run() {
         boolean isOrderInProgress = true;
         Order order = new Order();

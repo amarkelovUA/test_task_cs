@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Scanner;
 import org.example.model.Drink;
-import org.example.model.Goods;
 import org.example.model.Order;
 import org.example.model.Supplement;
 
