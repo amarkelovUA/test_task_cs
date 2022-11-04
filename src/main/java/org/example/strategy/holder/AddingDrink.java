@@ -8,10 +8,9 @@ import org.example.model.Goods;
 import org.example.model.Order;
 import org.example.model.Supplement;
 
-public class AddingDrink implements AddingGoods {
+public class AddingDrink implements AddingGoods<Drink> {
     @Override
-    public void addGoods(Order order, Goods goods) {
-        Drink drink = (Drink) goods;
+    public void addGoods(Order order, Drink drink) {
         if (drink.getSupplement().isEmpty()) {
             offerSupplement(drink);
         }
